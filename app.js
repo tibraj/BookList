@@ -5,7 +5,11 @@ function Book (title, author, isbn) {
 }
 
 function UI() {
-
+    UI.prototype.addBookToList = function(book){
+        const list = document.getElementById('book-list');
+        const row = document.createElement('tr');
+        console.log(row);
+    }
 }
 
 document.getElementById('book-form').addEventListener('submit', function(e){
@@ -15,7 +19,8 @@ document.getElementById('book-form').addEventListener('submit', function(e){
           isbn = document.getElementById('isbn').value;
     
     const book = new Book(title, author, isbn);
-
-    console.log(title, author, isbn);
+    const ui = new UI();
+    ui.addBookToList(book);
+    console.log(book);
 
 }) 
