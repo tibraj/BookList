@@ -51,4 +51,9 @@ document.getElementById('book-form').addEventListener('submit', function(e){
         ui.showAlert('Book Successfully Added!', 'success');
         ui.clearFields();
     }
-}) 
+});
+
+document.getElementById('book-list').addEventListener('click', function(e){
+    e.preventDefault();
+    console.log('test');
+})
