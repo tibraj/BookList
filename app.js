@@ -34,6 +34,12 @@ function UI() {
             document.querySelector('.alert').remove();
         }, 3000);
     }
+
+    UI.prototype.deleteBook = function(target) {
+        if(target.className === 'delete') {
+            target.parentElement.parentElement.remove();
+        }
+    }
 }
 
 document.getElementById('book-form').addEventListener('submit', function(e){
@@ -55,5 +61,7 @@ document.getElementById('book-form').addEventListener('submit', function(e){
 
 document.getElementById('book-list').addEventListener('click', function(e){
     e.preventDefault();
-    console.log('test');
+    const ui = new UI();
+    ui.deleteBook(e.target);
+    ui.showAlert('Book Successfully Removed', 'success');
 })
