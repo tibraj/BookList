@@ -46,15 +46,23 @@ class UI {
 
 class Store {
     static getBooks() {
-
+        let books;
+        if(localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books;
     }
 
     static displayBooks() {
 
     }
 
-    static addBook() {
-
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
     }
 
     static removeBook() {
@@ -70,10 +78,11 @@ document.getElementById('book-form').addEventListener('submit', function(e){
     
     const book = new Book(title, author, isbn);
     const ui = new UI();
-    if(title === '' || author === '' === isbn === '') {
+    if(title === '' || author === '' || isbn === '') {
         ui.showAlert('Please Fill In All Fields', 'error')
     } else {
         ui.addBookToList(book);
+        Store.addBook(book);
         ui.showAlert('Book Successfully Added!', 'success');
         ui.clearFields();
     }
